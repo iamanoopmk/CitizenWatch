@@ -1,0 +1,18 @@
+<resources>
+
+    <string name="app_name">Citizen Watch</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_camera">CameraActivity</string>
+    <string name="button">Click for Image</string>
+    <string name="title_activity_image_display">ImageDisplayActivity</string>
+    <string name="none"></string>
+    <string name="button_action">Click</string>
+    <string name="title_activity_choose_image">ChooseImageActivity</string>
+    <string name="choose_image">Is the image OK?</string>
+    <string name="button_save">Save</string>
+    <string name="button_discard">Discard</string>
+    <string name="holder">To be filled</string>
+    
+
+</resources>
