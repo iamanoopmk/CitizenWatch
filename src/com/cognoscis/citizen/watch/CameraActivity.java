@@ -28,8 +28,8 @@ public class CameraActivity extends Activity {
 	
 	private static final int CAMERA_PIC_REQUEST = 1337;
 	private static final int THUMBNAIL_SIZE = 400;
-	Uri uriSavedImage = null;
-	Uri selectedImage = null;
+	private Uri uriSavedImage = null;
+	private Uri selectedImage = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
