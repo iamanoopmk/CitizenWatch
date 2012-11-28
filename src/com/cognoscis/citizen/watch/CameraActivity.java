@@ -113,9 +113,9 @@ public class CameraActivity extends Activity {
     	ExifInterface exif = null;
 		try {
 			exif = new ExifInterface(imageFile.getAbsolutePath());
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
 		}
 		
 		int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
