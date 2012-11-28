@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,9 +29,11 @@ import android.widget.Toast;
 public class CameraActivity extends Activity {
 	
 	private static final int CAMERA_PIC_REQUEST = 1337;
-	private static final int THUMBNAIL_SIZE = 400;
+	private static final int THUMBNAIL_SIZE = 600;
 	private Uri uriSavedImage = null;
 	private Uri selectedImage = null;
+	private Bitmap bitmap=null;
+	private File imageFile = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,15 +48,15 @@ public class CameraActivity extends Activity {
         File imagesFolder = new File(Environment.getExternalStorageDirectory(), "citizenWatch");
         imagesFolder.mkdirs();
         String fileName = "image_" + String.valueOf(imageNum) + ".jpg";
-        File output = new File(imagesFolder, fileName);
-        while (output.exists()){
+        imageFile = new File(imagesFolder, fileName);
+        while (imageFile.exists()){
             imageNum++;
             fileName = "image_" + String.valueOf(imageNum) + ".jpg";
-            output = new File(imagesFolder, fileName);
+            imageFile = new File(imagesFolder, fileName);
         }
         
         // Along with the location start the activity to launch camera
-        uriSavedImage = Uri.fromFile(output);        
+        uriSavedImage = Uri.fromFile(imageFile);        
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
         startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
         
@@ -65,9 +69,36 @@ public class CameraActivity extends Activity {
     		Context context = this.getApplicationContext();
     		selectedImage = uriSavedImage;
     		ImageView image= (ImageView) findViewById(R.id.image01);
-            Bitmap bitmap=null;
+    		
+    		ExifInterface exif = null;
+    		try {
+    			exif = new ExifInterface(imageFile.getAbsolutePath());
+    		} catch (IOException e1) {
+    			// TODO Auto-generated catch block
+    			e1.printStackTrace();
+    		}
+    		
+    		int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            int rotate = 0;
+            switch(orientation) {
+              case ExifInterface.ORIENTATION_ROTATE_270:
+                  rotate = 270;
+                  break;
+              case ExifInterface.ORIENTATION_ROTATE_180:
+                  rotate = 180;
+                  break;
+              case ExifInterface.ORIENTATION_ROTATE_90:
+                  rotate = 90;
+                  break;
+            }
+            
             try {
-            	bitmap = getThumbnail(selectedImage, context);
+            	Bitmap bitmapOriginal = getThumbnail(selectedImage, context);
+            	int width = bitmapOriginal.getWidth();
+                int height = bitmapOriginal.getHeight();
+            	Matrix matrix = new Matrix();
+            	matrix.postRotate((float) rotate);
+    			bitmap = Bitmap.createBitmap(bitmapOriginal, 0, 0, width, height, matrix, true);
                 image.setImageBitmap(bitmap);
                 Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_LONG).show();
            } catch (Exception e) {
