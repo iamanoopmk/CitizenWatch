@@ -24,6 +24,7 @@ public class ImageDisplayActivity extends Activity {
 	private ImageView image;
 	private Bitmap bitmap;
 	private Uri selectedImage = null;
+	private static File imageFile = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class ImageDisplayActivity extends Activity {
         int imageNum = 0;
         File imagesFolder = new File(Environment.getExternalStorageDirectory(), "citizenWatch");
         String fileName = "image_" + String.valueOf(imageNum) + ".jpg";
-        File imageFile = new File(imagesFolder, fileName);
+        imageFile = new File(imagesFolder, fileName);
         while (imageFile.exists()){
             imageNum++;
             fileName = "image_" + String.valueOf(imageNum) + ".jpg";
@@ -49,7 +50,28 @@ public class ImageDisplayActivity extends Activity {
         Context context = this.getApplicationContext();
         selectedImage = Uri.fromFile(imageFile);
         
-        ExifInterface exif = null;
+        
+               
+        try {
+        	Bitmap bitmapOriginal = getThumbnail(selectedImage, context);
+        	int width = bitmapOriginal.getWidth();
+            int height = bitmapOriginal.getHeight();
+        	Matrix matrix = new Matrix();
+        	matrix.postRotate((float) getRotation());
+			bitmap = Bitmap.createBitmap(bitmapOriginal, 0, 0, width, height, matrix, true);	
+            image.setImageBitmap(bitmap);
+            Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_LONG).show();
+       } catch (Exception e) {
+           Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
+           Log.e("Camera", e.toString());
+       }
+        
+    }
+    
+    
+    public static int getRotation() {
+    	
+    	ExifInterface exif = null;
 		try {
 			exif = new ExifInterface(imageFile.getAbsolutePath());
 		} catch (IOException e1) {
@@ -70,21 +92,8 @@ public class ImageDisplayActivity extends Activity {
               rotate = 90;
               break;
         }
-               
-        try {
-        	Bitmap bitmapOriginal = getThumbnail(selectedImage, context);
-        	int width = bitmapOriginal.getWidth();
-            int height = bitmapOriginal.getHeight();
-        	Matrix matrix = new Matrix();
-        	matrix.postRotate((float) rotate);
-			bitmap = Bitmap.createBitmap(bitmapOriginal, 0, 0, width, height, matrix, true);        	
-            image.setImageBitmap(bitmap);
-            Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_LONG).show();
-       } catch (Exception e) {
-           Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
-           Log.e("Camera", e.toString());
-       }
         
+        return rotate;
     }
     
     public static Bitmap getThumbnail(Uri uri, Context context) throws FileNotFoundException, IOException{

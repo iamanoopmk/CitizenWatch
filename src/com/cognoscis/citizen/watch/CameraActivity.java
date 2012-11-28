@@ -33,7 +33,7 @@ public class CameraActivity extends Activity {
 	private Uri uriSavedImage = null;
 	private Uri selectedImage = null;
 	private Bitmap bitmap=null;
-	private File imageFile = null;
+	private static File imageFile = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,35 +69,13 @@ public class CameraActivity extends Activity {
     		Context context = this.getApplicationContext();
     		selectedImage = uriSavedImage;
     		ImageView image= (ImageView) findViewById(R.id.image01);
-    		
-    		ExifInterface exif = null;
-    		try {
-    			exif = new ExifInterface(imageFile.getAbsolutePath());
-    		} catch (IOException e1) {
-    			// TODO Auto-generated catch block
-    			e1.printStackTrace();
-    		}
-    		
-    		int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-            int rotate = 0;
-            switch(orientation) {
-              case ExifInterface.ORIENTATION_ROTATE_270:
-                  rotate = 270;
-                  break;
-              case ExifInterface.ORIENTATION_ROTATE_180:
-                  rotate = 180;
-                  break;
-              case ExifInterface.ORIENTATION_ROTATE_90:
-                  rotate = 90;
-                  break;
-            }
             
             try {
             	Bitmap bitmapOriginal = getThumbnail(selectedImage, context);
             	int width = bitmapOriginal.getWidth();
                 int height = bitmapOriginal.getHeight();
             	Matrix matrix = new Matrix();
-            	matrix.postRotate((float) rotate);
+            	matrix.postRotate((float) getRotation());
     			bitmap = Bitmap.createBitmap(bitmapOriginal, 0, 0, width, height, matrix, true);
                 image.setImageBitmap(bitmap);
                 Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_LONG).show();
@@ -127,6 +105,33 @@ public class CameraActivity extends Activity {
             
     	}
 
+    }
+    
+    
+    public static int getRotation() {
+    	
+    	ExifInterface exif = null;
+		try {
+			exif = new ExifInterface(imageFile.getAbsolutePath());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+        int rotate = 0;
+        switch(orientation) {
+          case ExifInterface.ORIENTATION_ROTATE_270:
+              rotate = 270;
+              break;
+          case ExifInterface.ORIENTATION_ROTATE_180:
+              rotate = 180;
+              break;
+          case ExifInterface.ORIENTATION_ROTATE_90:
+              rotate = 90;
+              break;
+        }
+        return rotate;
     }
     
     public static Bitmap getThumbnail(Uri uri, Context context) throws FileNotFoundException, IOException{
