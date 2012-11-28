@@ -1,28 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <LinearLayout
+        android:id="@+id/linear01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true" >
+        
         <TextView
             android:id="@+id/text01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:gravity="center_horizontal"
-            android:text="@string/holder"
-            android:textSize="20dp" />
-
+       	 	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:gravity="center_horizontal"
+        	android:text="@string/holder"
+        	android:textSize="20dp" >
+            
+        </TextView>
+        
         <ImageView
-            android:id="@+id/image01"
-            android:contentDescription="@string/none"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/text01" >
+        	android:id="@+id/image01"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:contentDescription="@string/none" >
             
         </ImageView>
+        
+    </LinearLayout>
+    
+    <RelativeLayout
+        android:id="@+id/linear02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal" >
+        
+        <LinearLayout
+        	android:id="@+id/linear03"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_alignParentLeft="true"
+        	android:orientation="vertical" >
+            
+            <TextView
+                android:id="@+id/textLong"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="@string/longitude"
+        		android:textSize="20dp" >
+                
+            </TextView>
+            
+            <TextView
+                android:id="@+id/textLat"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="@string/lattitude"
+        		android:textSize="20dp" >
+                
+            </TextView>
+            
+        </LinearLayout>
+        
+        <LinearLayout
+         	android:id="@+id/linear04"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_alignParentRight="true" >
+            
+            <Spinner
+                android:id="@+id/spinner1"
+             	android:layout_width="wrap_content"
+             	android:layout_height="wrap_content"
+             	android:layout_gravity="center" >
+             	
+            </Spinner>
+            
+        </LinearLayout>
+        
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -13,6 +13,23 @@
     <string name="button_save">Save</string>
     <string name="button_discard">Discard</string>
     <string name="holder">To be filled</string>
+    <string name="lattitude">Lattitude</string>
+    <string name="longitude">Longitude</string>
+    
+    <string-array name="offences" >
+        
+        <item>Select offence</item>
+        <item>offence1</item>
+        <item>offence2</item>
+        <item>offence3</item>
+        <item>offence4</item>
+        <item>offence5</item>
+        <item>offence6</item>
+        <item>offence7</item>
+        <item>offence8</item>
+        <item>offence9</item>
+        
+    </string-array>
     
 
 </resources>
