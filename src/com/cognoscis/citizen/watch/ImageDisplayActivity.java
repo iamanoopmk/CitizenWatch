@@ -1,7 +1,6 @@
 package com.cognoscis.citizen.watch;
 
 import java.io.File;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +10,8 @@ import android.view.Menu;
 import android.widget.ImageView;
 
 public class ImageDisplayActivity extends Activity {
+	ImageView image;
+	Bitmap bitmap;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,11 +30,34 @@ public class ImageDisplayActivity extends Activity {
         imageNum--;
         fileName = "image_" + String.valueOf(imageNum) + ".jpg";
         output = new File(imagesFolder, fileName); 
-        ImageView image = (ImageView)findViewById(R.id.image01);
-        Bitmap bitmap = BitmapFactory.decodeFile(output.getAbsolutePath());
-        image.setImageBitmap(bitmap);
-  
+        image = (ImageView)findViewById(R.id.image01);
         
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPurgeable = true; 
+        options.inJustDecodeBounds = true;
+        options.outHeight = 50;
+        options.outWidth = 50;
+        options.inSampleSize = 4;
+        bitmap = BitmapFactory.decodeFile(output.getAbsolutePath());
+        image.setImageBitmap(bitmap);
+        bitmap = null;
+        
+    }
+    
+   
+    
+    @Override
+    public void onDestroy()
+    {   
+        Cleanup();
+        super.onDestroy();
+    }
+
+    private void Cleanup()
+    {    
+        bitmap.recycle();
+        System.gc();
+        Runtime.getRuntime().gc();  
     }
 
     @Override
