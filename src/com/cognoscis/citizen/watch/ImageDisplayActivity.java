@@ -36,7 +36,7 @@ public class ImageDisplayActivity extends Activity {
 	private Bitmap bitmap;
 	private Uri selectedImage = null;
 	private static File imageFile = null;
-	private LocationManager locationMangaer=null;  
+	private LocationManager locationManager=null;  
 	private LocationListener locationListener=null;
 
     @Override
@@ -81,14 +81,16 @@ public class ImageDisplayActivity extends Activity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         
-        locationMangaer = (LocationManager) getSystemService(Context.LOCATION_SERVICE); 
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE); 
         
         boolean flag = displayGpsStatus();
         if (flag) {
         	
         	locationListener = new MyLocationListener();  
         	  
-        	locationMangaer.requestLocationUpdates(LocationManager.GPS_PROVIDER, 50, 10,locationListener);
+        	locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 50, 10,locationListener);
+        	
+        	locationManager.removeUpdates(locationListener);
         	
         	} else {
         		
