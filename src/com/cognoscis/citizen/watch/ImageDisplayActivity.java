@@ -84,18 +84,19 @@ public class ImageDisplayActivity extends Activity {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE); 
         
         boolean flag = displayGpsStatus();
+        
         if (flag) {
         	
         	locationListener = new MyLocationListener();  
         	  
         	locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 50, 10,locationListener);
         	
-        	locationManager.removeUpdates(locationListener);
-        	
         	} else {
         		
         		 alertbox("Gps Status!!", "Your GPS is: OFF");
         	}
+        
+        
       
     }
   
@@ -157,6 +158,8 @@ public class ImageDisplayActivity extends Activity {
             
             latView.setText(latitude);
             longView.setText(longitude);
+            
+            locationManager.removeUpdates(locationListener);
         }  
   
         public void onProviderDisabled(String provider) {  
