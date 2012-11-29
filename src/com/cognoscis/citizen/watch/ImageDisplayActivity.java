@@ -69,7 +69,7 @@ public class ImageDisplayActivity extends Activity {
         	matrix.postRotate((float) getRotation());
 			bitmap = Bitmap.createBitmap(bitmapOriginal, 0, 0, width, height, matrix, true);	
             image.setImageBitmap(bitmap);
-            Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_LONG).show();
+     //       Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_LONG).show();
        } catch (Exception e) {
            Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
            Log.e("Camera", e.toString());
