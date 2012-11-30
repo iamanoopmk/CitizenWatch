@@ -15,21 +15,55 @@
     <string name="holder">To be filled</string>
     <string name="lattitude">Lattitude</string>
     <string name="longitude">Longitude</string>
+    <string name="date_pick">Pick Date</string>
+    <string name="date_text">DD/MM/YY</string>
+    <string name="time_pick">Pick Time</string>
+    <string name="time_text">time</string>
     
     <string-array name="offences" >
         
         <item>Select offence</item>
-        <item>offence1</item>
-        <item>offence2</item>
-        <item>offence3</item>
-        <item>offence4</item>
-        <item>offence5</item>
-        <item>offence6</item>
-        <item>offence7</item>
-        <item>offence8</item>
-        <item>offence9</item>
+        <item>Defective Number Plate</item>
+        <item>No Parking</item>
+        <item>Not wearing seat belt</item>
+        <item>Oneway/No Entry</item>
+        <item>Parking on Footpath</item>
+        <item>Riding on Footpath</item>
+        <item>Riding without a Helmet</item>
+        <item>Stopped on Zebra cross/ near TRF light</item>
+        <item>Taking a U-Turn where U-Turn is prohibited</item>
+        <item>Triple Riding</item>
+        <item>Using Mobile Phone</item>
+        <item>Violating lane discipline</item>
+        <item>Wrong Parking</item>
         
     </string-array>
+    
+    <string name="form_data">Please fill the following details</string>
+    
+    <string name="reg_no">Vehicle Registration Number</string>
+    <string name="reg_no_hint">KAxxXXxxxx</string>
+    
+    <string name="violation">Traffic Violation Type</string>
+    
+    <string name="vdate">Violation Date</string>
+    
+    <string name="vtime">Violation Time</string>
+    
+    <string name="place">Violation Place</string>
+    <string name="place_hint">enter location</string>
+    
+    <string name="username">Name</string>
+    <string name="username_hint">Your Name</string>
+    
+    <string name="contact">Phone / Mobile No</string>
+    <string name="contact_hint">ph/mob no</string>
+    
+    <string name="email">Email</string>
+    <string name="email_hint">abc@xyz.com</string>
+    
+    <string name="remarks">Remarks</string>
+    <string name="remarks_hint">Enter your comments or remarks</string>
     
 
 </resources>

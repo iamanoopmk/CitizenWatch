@@ -20,20 +20,44 @@ public final class R {
     public static final class id {
         public static final int button_discard=0x7f080004;
         public static final int button_save=0x7f080003;
+        public static final int contact=0x7f08001b;
+        public static final int contact_text=0x7f08001a;
+        public static final int date_pick=0x7f08000e;
+        public static final int email=0x7f08001e;
+        public static final int email_text=0x7f08001d;
         public static final int image01=0x7f080001;
         public static final int linear01=0x7f080002;
         public static final int linear02=0x7f080005;
-        public static final int linear03=0x7f080006;
-        public static final int linear04=0x7f080009;
-        public static final int menu_settings=0x7f08000b;
-        public static final int spinner1=0x7f08000a;
+        public static final int linear_contact=0x7f080019;
+        public static final int linear_date=0x7f08000d;
+        public static final int linear_email=0x7f08001c;
+        public static final int linear_name=0x7f080016;
+        public static final int linear_offence=0x7f08000a;
+        public static final int linear_place=0x7f080013;
+        public static final int linear_reg=0x7f080007;
+        public static final int linear_remarks=0x7f08001f;
+        public static final int linear_time=0x7f080010;
+        public static final int menu_settings=0x7f080022;
+        public static final int name=0x7f080018;
+        public static final int name_text=0x7f080017;
+        public static final int offence_text=0x7f08000b;
+        public static final int place=0x7f080015;
+        public static final int place_text=0x7f080014;
+        public static final int reg_no=0x7f080009;
+        public static final int reg_no_text=0x7f080008;
+        public static final int remark=0x7f080021;
+        public static final int remarks_text=0x7f080020;
+        public static final int scroll=0x7f080006;
+        public static final int spinner1=0x7f08000c;
         public static final int text01=0x7f080000;
-        public static final int textLat=0x7f080008;
-        public static final int textLong=0x7f080007;
+        public static final int text_date=0x7f08000f;
+        public static final int text_time=0x7f080012;
+        public static final int time_pick=0x7f080011;
     }
     public static final class layout {
         public static final int choose_image=0x7f030000;
-        public static final int image_display=0x7f030001;
+        public static final int details=0x7f030001;
+        public static final int image_display=0x7f030002;
     }
     public static final class menu {
         public static final int activity_camera=0x7f070000;
@@ -47,15 +71,35 @@ public final class R {
         public static final int button_discard=0x7f04000b;
         public static final int button_save=0x7f04000a;
         public static final int choose_image=0x7f040009;
+        public static final int contact=0x7f04001d;
+        public static final int contact_hint=0x7f04001e;
+        public static final int date_pick=0x7f04000f;
+        public static final int date_text=0x7f040010;
+        public static final int email=0x7f04001f;
+        public static final int email_hint=0x7f040020;
+        public static final int form_data=0x7f040013;
         public static final int hello_world=0x7f040001;
         public static final int holder=0x7f04000c;
         public static final int lattitude=0x7f04000d;
         public static final int longitude=0x7f04000e;
         public static final int menu_settings=0x7f040002;
         public static final int none=0x7f040006;
+        public static final int place=0x7f040019;
+        public static final int place_hint=0x7f04001a;
+        public static final int reg_no=0x7f040014;
+        public static final int reg_no_hint=0x7f040015;
+        public static final int remarks=0x7f040021;
+        public static final int remarks_hint=0x7f040022;
+        public static final int time_pick=0x7f040011;
+        public static final int time_text=0x7f040012;
         public static final int title_activity_camera=0x7f040003;
         public static final int title_activity_choose_image=0x7f040008;
         public static final int title_activity_image_display=0x7f040005;
+        public static final int username=0x7f04001b;
+        public static final int username_hint=0x7f04001c;
+        public static final int vdate=0x7f040017;
+        public static final int violation=0x7f040016;
+        public static final int vtime=0x7f040018;
     }
     public static final class style {
         public static final int AppTheme=0x7f060000;

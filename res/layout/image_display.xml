@@ -5,83 +5,274 @@
     
     <LinearLayout
         android:id="@+id/linear01"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true" >
+        android:orientation="vertical" >
         
         <TextView
             android:id="@+id/text01"
        	 	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:gravity="center_horizontal"
-        	android:text="@string/holder"
+        	android:layout_gravity="center_horizontal"
+        	android:text="@string/form_data"
         	android:textSize="20dp" >
             
         </TextView>
         
-        <ImageView
-        	android:id="@+id/image01"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:contentDescription="@string/none" >
-            
-        </ImageView>
-        
     </LinearLayout>
     
-    <RelativeLayout
-        android:id="@+id/linear02"
-        android:layout_width="wrap_content"
+    <ScrollView 
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:orientation="horizontal" >
+        android:layout_below="@+id/linear01" >
+ 
+    <LinearLayout
+        android:id="@+id/linear02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+            
         
         <LinearLayout
-        	android:id="@+id/linear03"
-        	android:layout_width="wrap_content"
+        	android:id="@+id/linear_reg"
+        	android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
-        	android:layout_alignParentLeft="true"
         	android:orientation="vertical" >
-            
+        	
             <TextView
-                android:id="@+id/textLong"
-        		android:layout_width="wrap_content"
-        		android:layout_height="wrap_content"
-        		android:text="@string/longitude"
-        		android:textSize="20dp" >
-                
+                 android:id="@+id/reg_no_text"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/reg_no" >
+                    
             </TextView>
             
-            <TextView
-                android:id="@+id/textLat"
-        		android:layout_width="wrap_content"
-        		android:layout_height="wrap_content"
-        		android:text="@string/lattitude"
-        		android:textSize="20dp" >
-                
-            </TextView>
-            
+            <EditText
+                android:id="@+id/reg_no"
+                android:layout_width="118dp"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLength="12"
+                android:maxLines="1"
+                android:hint="@string/reg_no_hint" >
+        
+    		</EditText>
+    		
         </LinearLayout>
         
         <LinearLayout
-         	android:id="@+id/linear04"
-        	android:layout_width="wrap_content"
+        	android:id="@+id/linear_offence"
+        	android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
-        	android:layout_alignParentRight="true" >
+        	android:orientation="vertical" >
+            
+            <TextView
+                 android:id="@+id/offence_text"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/violation" >
+                    
+            </TextView>
+
             
             <Spinner
                 android:id="@+id/spinner1"
              	android:layout_width="wrap_content"
              	android:layout_height="wrap_content"
-             	android:layout_gravity="center" >
+             	android:layout_gravity="left" >
              	
             </Spinner>
             
-        </LinearLayout>
+         </LinearLayout>
+             
+         <LinearLayout
+             android:id="@+id/linear_date"
+        	 android:layout_width="match_parent"
+        	 android:layout_height="wrap_content"
+        	 android:orientation="horizontal" >
+        		
+             <Button
+                 android:id="@+id/date_pick"
+                 android:text="@string/date_pick"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" >
+                    
+             </Button>
+                
+             <TextView
+                 android:id="@+id/text_date"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/date_text" >
+                    
+             </TextView>
+             
+         </LinearLayout>
+            
+         <LinearLayout
+        		android:id="@+id/linear_time"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:orientation="horizontal" >
+        		
+                <Button 
+                    android:id="@+id/time_pick"
+                    android:text="@string/time_pick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                    
+                </Button>
+                
+                <TextView
+                    android:id="@+id/text_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time_text" >
+                    
+                </TextView>
+         </LinearLayout>
+         
+         <LinearLayout
+        		android:id="@+id/linear_place"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:orientation="vertical" >
+                
+                <TextView
+                 	android:id="@+id/place_text"
+                 	android:layout_width="wrap_content"
+                 	android:layout_height="wrap_content"
+                 	android:text="@string/place" >
+                    
+           		</TextView>
+             
+             	<EditText
+             	    android:id="@+id/place"
+                	android:layout_width="match_parent"
+                	android:layout_height="wrap_content"
+                	android:hint="@string/place_hint"
+                	android:inputType="text"
+                	android:maxLength="50"
+                	android:maxLines="1" >
         
-    </RelativeLayout>
+    			</EditText>
+    			
+           </LinearLayout>
+           
+           <LinearLayout
+        		android:id="@+id/linear_name"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:orientation="vertical" >
+                
+                <TextView
+                 	android:id="@+id/name_text"
+                 	android:layout_width="wrap_content"
+                 	android:layout_height="wrap_content"
+                 	android:text="@string/username" >
+                    
+           		</TextView>
+    		
+          		<EditText
+          		    android:id="@+id/name"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:hint="@string/username_hint"
+                	android:inputType="text"
+                	android:maxLength="50"
+                	android:maxLines="1" >
+        
+    			</EditText>
+    			
+           </LinearLayout>
+          	
+           <LinearLayout
+        		android:id="@+id/linear_contact"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:orientation="vertical" >
+                
+                <TextView
+                 	android:id="@+id/contact_text"
+                 	android:layout_width="wrap_content"
+                 	android:layout_height="wrap_content"
+                 	android:text="@string/contact" >
+                    
+           		</TextView>
+           		
+           		<EditText
+                	android:id="@+id/contact"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:hint="@string/contact_hint"
+                	android:inputType="text"
+                	android:maxLength="12"
+                	android:maxLines="1" >
+        
+    			</EditText>
+    			
+           	</LinearLayout>
+           	
+           	<LinearLayout
+        		android:id="@+id/linear_email"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:orientation="vertical" >
+                
+                <TextView
+                 	android:id="@+id/email_text"
+                 	android:layout_width="wrap_content"
+                 	android:layout_height="wrap_content"
+                 	android:text="@string/email" >
+                    
+           		</TextView>
+    		
+            	<EditText
+                	android:id="@+id/email"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:hint="@string/email_hint"
+                	android:inputType="text"
+                	android:maxLength="30"
+                	android:maxLines="1" >
+        
+    		</EditText>
+    		
+            </LinearLayout>
+            
+           	<LinearLayout
+        		android:id="@+id/linear_remarks"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:orientation="vertical" >
+                
+                <TextView
+                 	android:id="@+id/remarks_text"
+                 	android:layout_width="wrap_content"
+                 	android:layout_height="wrap_content"
+                 	android:text="@string/remarks" >
+                    
+           		</TextView>
+    		
+            	<EditText
+                	android:id="@+id/remark"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:hint="@string/remarks_hint"
+                	android:inputType="text"
+                	android:maxLength="30"
+                	android:maxLines="3" >
+        
+    			</EditText>
+    			
+            </LinearLayout>
+            
+           	
+            
+    </LinearLayout>
+    
+	 </ScrollView>
 
 </RelativeLayout>

@@ -1,7 +1,9 @@
 package com.cognoscis.citizen.watch;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -29,7 +31,7 @@ import android.widget.Toast;
 public class CameraActivity extends Activity {
 	
 	private static final int CAMERA_PIC_REQUEST = 1337;
-	private static final int THUMBNAIL_SIZE = 600;
+	private static final int THUMBNAIL_SIZE = 500;
 	private Uri uriSavedImage = null;
 	private Uri selectedImage = null;
 	private Bitmap bitmap=null;
@@ -67,7 +69,7 @@ public class CameraActivity extends Activity {
     	if(requestCode == CAMERA_PIC_REQUEST && resultCode == Activity.RESULT_OK) {
     		
     		Context context = this.getApplicationContext();
-    		selectedImage = uriSavedImage;
+    		selectedImage = Uri.fromFile(imageFile);
     		ImageView image= (ImageView) findViewById(R.id.image01);
             
             try {
@@ -83,6 +85,27 @@ public class CameraActivity extends Activity {
                Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
                Log.e("Camera", e.toString());
            }
+            
+      // ***************** trying to compress the image ********************
+            File newFolder = new File(Environment.getExternalStorageDirectory(), "citizenWatch");
+            String newFileName = "test.jpg";
+            File newImage = new File(newFolder, newFileName);
+            if (newImage.exists()) newImage.delete(); 
+            
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
+            
+            try {
+                FileOutputStream fo = new FileOutputStream(newImage);
+                //5
+                fo.write(bytes.toByteArray());
+                fo.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            
+      // ************************* Compression done ***************************
             
             Button save = (Button)findViewById(R.id.button_save);
             Button discard = (Button)findViewById(R.id.button_discard);
