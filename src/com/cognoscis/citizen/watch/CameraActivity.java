@@ -113,8 +113,6 @@ public class CameraActivity extends Activity {
             save.setOnClickListener(new OnClickListener() {
             	public void onClick(View v) {
             		Intent display = new Intent(CameraActivity.this, ImageDisplayActivity.class);
-            		Bundle extras = new Bundle();
-            		extras.putString("uri", selectedImage.toString());
             		startActivity(display);
             	}
             });

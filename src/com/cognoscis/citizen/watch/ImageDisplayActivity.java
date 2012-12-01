@@ -162,16 +162,58 @@ public class ImageDisplayActivity extends Activity {
         		mRemarks = (EditText)findViewById(R.id.remarks);
         		remarks = mRemarks.getText().toString();
         		
-        		Toast.makeText(getBaseContext(), registrationNo + "\n"
-        				+ violationType + "\n"
-        				+ violationDate + "\n"
-        				+ violationTime + "\n"
-        				+ violationType + "\n"
-        				+ violationPlace + "\n"
-        				+ userName + "\n"
-        				+ userContact + "\n"
-        				+ userEmail + "\n"
-        				+ remarks, Toast.LENGTH_LONG).show();
+        		if (registrationNo.length()==0){
+        			
+        			Toast.makeText(getBaseContext(), "Enter registration number", Toast.LENGTH_LONG).show();
+        			return;
+        		}
+      
+        		if (violationType.compareTo("Select offence") == 0) {
+        			
+        			Toast.makeText(getBaseContext(), "Please select an offence", Toast.LENGTH_LONG).show();
+        			return;
+        			
+        		}
+        		
+        		if (violationPlace.length()==0){
+        			
+        			Toast.makeText(getBaseContext(), "Enter violation place", Toast.LENGTH_LONG).show();
+        			return;
+        		}
+        		
+        		if (userName.length()==0){
+        			
+        			Toast.makeText(getBaseContext(), "Enter your name", Toast.LENGTH_LONG).show();
+        			return;
+        		}
+        		
+        		if (userContact.length()==0){
+        			
+        			Toast.makeText(getBaseContext(), "Enter Contact number", Toast.LENGTH_LONG).show();
+        			return;
+        		}
+        		
+        		if (userEmail.length()==0){
+        			
+        			Toast.makeText(getBaseContext(), "Enter email ID", Toast.LENGTH_LONG).show();
+        			return;
+        		}
+        		
+        		else {
+        			
+        			Toast.makeText(getBaseContext(), registrationNo + "\n"
+            				+ violationType + "\n"
+            				+ violationDate + "\n"
+            				+ violationTime + "\n"
+            				+ violationPlace + "\n"
+            				+ userName + "\n"
+            				+ userContact + "\n"
+            				+ userEmail + "\n"
+            				+ remarks, Toast.LENGTH_LONG).show();
+        			
+        		}
+        		
+        		
         		
         	}
         });
