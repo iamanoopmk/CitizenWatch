@@ -65,5 +65,7 @@
     <string name="remarks">Remarks</string>
     <string name="remarks_hint">Enter your comments or remarks</string>
     
+    <string name="submit_button">Submit</string>
+    
 
 </resources>

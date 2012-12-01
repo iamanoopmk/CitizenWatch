@@ -53,7 +53,7 @@
                 android:id="@+id/reg_no"
                 android:layout_width="118dp"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textCapCharacters"
                 android:maxLength="12"
                 android:maxLines="1"
                 android:hint="@string/reg_no_hint" >
@@ -176,7 +176,7 @@
            		</TextView>
     		
           		<EditText
-          		    android:id="@+id/name"
+          		    android:id="@+id/user_name"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:hint="@string/username_hint"
@@ -207,7 +207,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:hint="@string/contact_hint"
-                	android:inputType="text"
+                	android:inputType="number"
                 	android:maxLength="12"
                 	android:maxLines="1" >
         
@@ -234,7 +234,7 @@
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:hint="@string/email_hint"
-                	android:inputType="text"
+                	android:inputType="textEmailAddress"
                 	android:maxLength="30"
                 	android:maxLines="1" >
         
@@ -257,7 +257,7 @@
            		</TextView>
     		
             	<EditText
-                	android:id="@+id/remark"
+                	android:id="@+id/remarks"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:hint="@string/remarks_hint"
@@ -269,8 +269,22 @@
     			
             </LinearLayout>
             
-           	
-            
+           	<LinearLayout
+        		android:id="@+id/linear_button_submit"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:orientation="vertical" >
+            	
+           	    <Button 
+           	        android:id="@+id/submit_button"
+           	        android:layout_width="wrap_content"
+           	        android:layout_height="wrap_content"
+           	        android:text="@string/submit_button" >
+           	        
+           	    </Button>            
+           	 
+           	 </LinearLayout>
+           	 
     </LinearLayout>
     
 	 </ScrollView>

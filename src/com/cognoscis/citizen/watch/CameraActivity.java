@@ -52,7 +52,7 @@ public class CameraActivity extends Activity {
         String fileName = "image_" + String.valueOf(imageNum) + ".jpg";
         imageFile = new File(imagesFolder, fileName);
         while (imageFile.exists()){
-            imageNum++;
+            ++imageNum;
             fileName = "image_" + String.valueOf(imageNum) + ".jpg";
             imageFile = new File(imagesFolder, fileName);
         }
@@ -82,7 +82,7 @@ public class CameraActivity extends Activity {
                 image.setImageBitmap(bitmap);
                 Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_LONG).show();
            } catch (Exception e) {
-               Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
+               Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
                Log.e("Camera", e.toString());
            }
             
