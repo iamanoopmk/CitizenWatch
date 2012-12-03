@@ -52,7 +52,7 @@ public class CameraActivity extends Activity {
         String fileName = "image_" + String.valueOf(imageNum) + ".jpg";
         imageFile = new File(imagesFolder, fileName);
         while (imageFile.exists()){
-            ++imageNum;
+            imageNum += 1;
             fileName = "image_" + String.valueOf(imageNum) + ".jpg";
             imageFile = new File(imagesFolder, fileName);
         }
@@ -72,7 +72,7 @@ public class CameraActivity extends Activity {
     		selectedImage = Uri.fromFile(imageFile);
     		ImageView image= (ImageView) findViewById(R.id.image01);
             
-            try {
+            try {  
             	Bitmap bitmapOriginal = getThumbnail(selectedImage, context);
             	int width = bitmapOriginal.getWidth();
                 int height = bitmapOriginal.getHeight();
@@ -81,9 +81,11 @@ public class CameraActivity extends Activity {
     			bitmap = Bitmap.createBitmap(bitmapOriginal, 0, 0, width, height, matrix, true);
                 image.setImageBitmap(bitmap);
                 Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_LONG).show();
+                
            } catch (Exception e) {
                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
                Log.e("Camera", e.toString());
+               
            }
             
       // ***************** trying to compress the image ********************
@@ -96,13 +98,14 @@ public class CameraActivity extends Activity {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
             
             try {
-                FileOutputStream fo = new FileOutputStream(newImage);
-                //5
+            	
+                FileOutputStream fo = new FileOutputStream(newImage);              
                 fo.write(bytes.toByteArray());
                 fo.close();
+                
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            	
+            	Log.e("Camera", "could not open file to compress");
             }
             
       // ************************* Compression done ***************************
