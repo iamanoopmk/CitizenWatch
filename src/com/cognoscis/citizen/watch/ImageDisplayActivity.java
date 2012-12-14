@@ -1,5 +1,11 @@
 package com.cognoscis.citizen.watch;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -11,6 +17,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -28,6 +35,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ImageDisplayActivity extends Activity {
+	
+	private static final int ACTIVITY_CREATE=0;
+    private static final int ACTIVITY_EDIT=1;
+
+    private static final int INSERT_ID = Menu.FIRST;
+    private static final int DELETE_ID = Menu.FIRST + 1;
+
+    private ImageDatabase mDbHelper;
+    private Cursor mCursor;
 
 	private LocationManager locationManager=null;  
 	private LocationListener locationListener=null;
@@ -78,6 +94,8 @@ public class ImageDisplayActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_display);
+        
+        mDbHelper = new ImageDatabase(this);
         
         Spinner spinner = (Spinner) findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -201,6 +219,36 @@ public class ImageDisplayActivity extends Activity {
         		
         		else {
         			
+        		/*	try {
+        				String destPath = "/data/data/" + getPackageName() + "/databases/dbImages";
+        				File f = new File(destPath);
+        				if(!f.exists()) {
+        					CopyDB(getBaseContext().getAssets().open("myDb"), new FileOutputStream(destPath));
+        				}
+        			} catch (FileNotFoundException e) {
+        				
+        			} catch (IOException e) {
+        				e.printStackTrace();
+        			}
+        			*/
+        			
+        			
+        			mDbHelper.open();        			
+        			mDbHelper.createEntry(registrationNo, violationType, violationDate, violationTime,
+        					violationPlace, userName, userContact, userEmail, remarks, "null");
+        			mDbHelper.close();
+        			
+        			mDbHelper.open();
+        			mCursor = mDbHelper.fetchEntry(0);
+        	        if (mCursor.moveToFirst())        
+        	            DisplayRecord(mCursor);
+        	        else
+        	            Toast.makeText(getBaseContext(), "No Assignments found", Toast.LENGTH_LONG).show();
+        	        mDbHelper.close();
+        			
+        			
+        			
+        			
         			Toast.makeText(getBaseContext(), registrationNo + "\n"
             				+ violationType + "\n"
             				+ violationDate + "\n"
@@ -220,6 +268,29 @@ public class ImageDisplayActivity extends Activity {
        
       
     }
+    
+    //CopyDB routine
+    public void CopyDB(InputStream inputStream, OutputStream outputStream) 
+    	    throws IOException {
+    	        //---copy 1K bytes at a time---
+    	        byte[] buffer = new byte[1024];
+    	        int length;
+    	        while ((length = inputStream.read(buffer)) > 0) {
+    	            outputStream.write(buffer, 0, length);
+    	        }
+    	        inputStream.close();
+    	        outputStream.close();
+    	    }
+    //Routine to display record in toast
+    
+    public void DisplayRecord(Cursor c)
+    {
+        Toast.makeText(this, 
+                "_id: " + c.getString(0) + "\n" +
+                "regNo: " + c.getString(1) + "\n" +
+                "vType:  " + c.getString(2),
+                Toast.LENGTH_SHORT).show();        
+    } 
     
    // The overridden method for 'showDialog()' inside the 'onClick()' method for handling 
    // the click event of the button 'change the time'
