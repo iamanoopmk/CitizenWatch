@@ -23,6 +23,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,7 +43,7 @@ public class ImageDisplayActivity extends Activity {
     private static final int INSERT_ID = Menu.FIRST;
     private static final int DELETE_ID = Menu.FIRST + 1;
 
-    private ImageDatabase mDbHelper;
+    private DatabaseHelper mDbHelper;
     private Cursor mCursor;
 
 	private LocationManager locationManager=null;  
@@ -95,7 +96,8 @@ public class ImageDisplayActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_display);
         
-        mDbHelper = new ImageDatabase(this);
+        //create a handler for database operation
+        mDbHelper = new DatabaseHelper(this);
         
         Spinner spinner = (Spinner) findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -232,21 +234,10 @@ public class ImageDisplayActivity extends Activity {
         			}
         			*/
         			
-        			
-        			mDbHelper.open();        			
-        			mDbHelper.createEntry(registrationNo, violationType, violationDate, violationTime,
-        					violationPlace, userName, userContact, userEmail, remarks, "null");
-        			mDbHelper.close();
-        			
-        			mDbHelper.open();
-        			mCursor = mDbHelper.fetchEntry(0);
-        	        if (mCursor.moveToFirst())        
-        	            DisplayRecord(mCursor);
-        	        else
-        	            Toast.makeText(getBaseContext(), "No Assignments found", Toast.LENGTH_LONG).show();
-        	        mDbHelper.close();
-        			
-        			
+        			Log.d("Insert: ", "Inserting ..");
+        					
+        			mDbHelper.createEntry(new ImageDatabase (registrationNo, violationType, violationDate, violationTime,
+        					violationPlace, userName, userContact, userEmail, remarks, "null"));
         			
         			
         			Toast.makeText(getBaseContext(), registrationNo + "\n"
